@@ -5,9 +5,21 @@ if [ ! -e /data/dhcpd.conf ]; then
     cp /etc/dhcp/dhcpd.conf.example /data/dhcpd.conf
 fi
 
-/usr/sbin/dhcpd -cf /data/dhcpd.conf -t && echo Configuration check successful. || echo Configuration check failed. Startup aborted. && exit 1
+/usr/sbin/dhcpd -cf /data/dhcpd.conf -t
+if [ $? -eq 0 ]; then
+    echo Configuration check successful.
+else
+    echo Configuration check failed. Startup aborted.
+    exit 1
+fi
 
-/usr/sbin/dhcpd -lf /data/dhcpd.leases -T && echo Lease File check successful. || echo Lease File check failed and may be corrupt. Startup aborted. && exit 1
+/usr/sbin/dhcpd -lf /data/dhcpd.leases -T
+if [ $? -eq 0 ]; then
+    echo Lease File check successful.
+else
+    echo Lease File check failed and may be corrupt. Startup aborted.
+    exit 1
+fi
 
 /usr/sbin/dhcpd -cf /data/dhcpd.conf -lf /data/dhcpd.leases -f -d -q
 
