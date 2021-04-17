@@ -1,6 +1,8 @@
 #!/bin/ash
 # DHCPD Entry File
 
+echo $(date) - Starting DHCPd
+
 if [ ! -e /data/dhcpd.conf ]; then
     cp /etc/dhcp/dhcpd.conf.example /data/dhcpd.conf
 fi
@@ -23,8 +25,9 @@ if [ -e /data/dhcpd.leases ]; then
     fi
 else
     echo No Existing Lease File.
+    touch /data/dhcpd.leases
 fi
 
-/usr/sbin/dhcpd -cf /data/dhcpd.conf -lf /data/dhcpd.leases -f -d -q
+/usr/sbin/dhcpd -cf /data/dhcpd.conf -lf /data/dhcpd.leases -f -d
 
 exit 0
