@@ -1,0 +1,14 @@
+#!/bin/ash
+# DHCPD Entry File
+
+if [ ! -e /data/dhcp.conf ]; then
+    cp /etc/dhcp/dhcp.conf.example /data/dhcp.conf
+fi
+
+/usr/sbin/dhcpd -cf /data/dhcp.conf -t && echo Configuration check successful. || echo Configuration check failed. Startup aborted. && exit 1
+
+/usr/sbin/dhcpd -lf /data/dhcpd.leases -T && echo Lease File check successful. || echo Lease File check failed and may be corrupt. Startup aborted. && exit 1
+
+/usr/sbin/dhcpd -cf /data/dhcp.conf -lf /data/dhcpd.leases -f -d -q
+
+exit 0
