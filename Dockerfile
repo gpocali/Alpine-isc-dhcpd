@@ -4,7 +4,7 @@ RUN apk add dhcp-server-vanilla
 
 RUN mkdir /data
 
-COPY .dhcpd-entry /bin/dhcpd-entry
+COPY ./dhcpd-entry /bin/dhcpd-entry
 
 RUN chmod +x /bin/dhcpd-entry
 
