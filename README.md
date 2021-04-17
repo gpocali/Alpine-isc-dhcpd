@@ -2,7 +2,7 @@
  dhcpd-server-vanilla on Alpine Linux
 
 ## Purpose
- This docker is designed to be a light weight DHCPD implmentation with persistent lease database between upgrades and validation checking for dhcp.conf and dhcp.leases.
+ This docker is designed to be a light weight DHCPD implmentation with persistent lease database between upgrades and validation checking for dhcpd.conf and dhcpd.leases.
  
 ## Running Requirements
  - Volume: 
