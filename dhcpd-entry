@@ -16,7 +16,7 @@ else
 fi
 
 if [ -e /data/dhcpd.leases ]; then
-    /usr/sbin/dhcpd -lf /data/dhcpd.leases -T
+    /usr/sbin/dhcpd -cf /data/dhcpd.conf -lf /data/dhcpd.leases -T
     if [ $? -eq 0 ]; then
         echo Lease File check successful.
     else
